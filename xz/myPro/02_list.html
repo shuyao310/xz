@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+	 <title></title>
+ </head>
+  <body onload="check()">
+	<table id="d1" border="1px">
+	  <thead>
+		  <tr>
+		  	<th>登录名称</th>
+		  	<th>电子邮箱</th>
+		  	<th>联系方式</th>
+		  	<th>用户姓名</th>
+		  	<th>用户性别</th>
+		  	<th>操作</th>
+		  </tr>
+		</thead>
+	  </table>
+	  <script>
+	    function check(){
+			  var xhr=new XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+				  if(xhr.readyState==4&&xhr.status==200){
+					  var result=xhr.responseText;
+						console.log(typeof(result));
+						var arr=JSON.parse(result);
+						d1.innerHTML="";
+						for(var i=0;i<arr.length;i++){
+               var gender="";
+							if(arr[i].gender==1){
+							  gender="男"
+							}else if(arr[i].gender==0){
+							  gender="女"
+							}else{
+							  gender="不详"
+							}
+//在a标签中，调用04_delete.html.中的方法
+							 d1.innerHTML+="<tr><td>"+arr[i].uname+"</td><td>"+arr[i].email+"</td><td>"+arr[i].phone+"</td><td>"+arr[i].user_name+"</td><td>"+gender+"</td><td><a href= 'javascript:sc("+arr[i].uid+")' >删除</a><a href='04_update2.html?uid="+arr[i].uid+"'>修改</a></td></tr>"
+						}
+					}
+				}
+				xhr.open("get","/mypro/userlist",true);
+				xhr.send(null);
+			}
+      function sc(uid){
+		  var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+			  if(xhr.readyState==4&&xhr.status==200){
+				  var result=xhr.responseText;
+					if(result==1){
+					  alert("删除成功");
+						check();
+					}else{
+					  alert("删除失败");
+					}
+				}
+			}
+			xhr.open("get","/mypro/sc?uid="+uid,true);
+			xhr.send(null);
+			}
+		</script>
+		
+	
+  </body>
+</html>

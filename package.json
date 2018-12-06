@@ -1,0 +1,25 @@
+{
+  "name": "shuyao",
+  "version": "1.0.0",
+  "description": "this id a test project from hsy",
+  "main": "app.js",
+  "scripts": {
+    "test": "node  ./test.js"
+    "start": "node  ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.sinacloud.com/shuyao"
+  },
+  "keywords": [
+    "tedu",
+    "test",
+    "node",
+    "sae"
+  ],
+  "author": "HuangShuYao",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

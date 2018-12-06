@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+	 <title></title>
+ </head>
+  <body>
+	<div>用户编号： <input type="text" id="uid"></div>
+	<div>修改密码： <input type="password" id="upwd"></div>
+	<div>修改邮箱： <input type="text" id="email"></div>
+	<div>修改性别： <input type="text" id="gender"></div>
+	<div>修改手机： <input type="text" id="phone"></div>
+	<input type="button" value="提交" onclick="reup()">
+	<script>
+	  function reup(){
+		  var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+			  if(xhr.readyState==4&&xhr.status==200){
+				  var result=xhr.responseText;
+					console.log(result);
+				}
+			}
+			xhr.open("post","/mypro/updateUser",true);
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			var $gender="";
+			if(gender.value=="男"){
+			  $gender=1;
+			}else if(gender.value=="女"){
+			  $gender=0;
+			}
+      var formdata="upw="+upwd.value+"&email="+email.value+"&gender="+gender.value+"&phone="+phone.value+"&uid="+uid.value
+			xhr.send(formdata);
+		}
+	</script>
+  </body>
+</html>

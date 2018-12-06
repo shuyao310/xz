@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+	 <title></title>
+ </head>
+  <body>
+	  <div>用户名称
+		  <input type="text" id="uname">
+		</div>
+		<div>用户密码
+		  <input type="password" id="upwd">
+		</div>
+		<input type="button" value="登录" onclick="post_Msg()">
+		<script>
+		  function post_Msg(){
+			  var xhr=new XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+				  if(xhr.readyState==4&&xhr.status==200){
+					  var result=xhr.responseText;
+						console.log(result);
+						
+					}
+				}
+				xhr.open("post","/demo/postlogin",true);
+				var formdata="uname="+uname.value+"&upwd="+upwd.value;
+				//修改请求头，可以发送任意文本
+				xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+       xhr.send(formdata);
+			}
+		</script>
+  </body>
+</html>

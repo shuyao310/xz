@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+	 <title></title>
+ </head>
+  <body>
+	  <div>
+		  <input type="text" id="uid">
+		</div>
+		<input type="button" value="删除" onclick="sc()" >
+		<script>
+		  function sc(){
+		  var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+			  if(xhr.readyState==4&&xhr.status==200){
+				  var result=xhr.responseText;
+					if(result==1){
+					  alert("删除成功");
+					}else{
+					  alert("删除失败");
+					}
+				}
+			}
+			xhr.open("get","/mypro/sc?uid="+uid.value,true);
+			xhr.send(null);
+			}
+		</script>
+  </body>
+</html>

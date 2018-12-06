@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+	 <title></title>
+ </head>
+  <body>
+	<div>登录名称：<input type="text" id="uname" onblur="checkname()">
+	  <span id="unameMsg"></span>
+	</div>
+	<div>登录密码：<input type="password" id="upwd1" ></div>
+	<span id="upwdMsg"></span>
+	<div>密码验证：<input type="password" id="upwd2" onblur="checkupwd()"></div>
+	<div>联系方式：<input type="text" id="phone"></div>
+	<div>邮箱地址：<input type="text" id="email"></div>
+	<div>真实姓名：<input type="text" id="user_name"></div>
+  <div>用户性别：<select id="gender">
+	  <option value="1">男</option>
+	  <option value="0">女</option>
+	  <option value="2">不详</option>
+	  </select>
+	</div>
+
+	<input type="button" value="注册" onclick="register()">
+
+	<script>
+	  function checkname(){
+		  
+		}
+	  var isRegister=false;
+	  function checkupwd(){
+		  if(upwd1.value==upwd2.value){
+			  isRegister=true;
+        upwdMsg.innerHTML="密码一致";
+			}else{
+			  isRegister=false;
+        upwdMsg.innerHTML="密码一致";
+			}
+		}
+	  function register(){
+		  var xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(){
+			  if(xhr.readyState==4&&xhr.status==200){
+				  var result=xhr.responseText;
+					console.log(result);
+				}
+			}
+			xhr.open("post","/mypro/register",true);
+			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      var formdata="uname="+uname.value+"&upwd="+upwd.value+"&email="+email.value+"&phone="+phone.value+"&user_name="+user_name.value+"&gender="+$gender.value;
+			xhr.send(formdata);
+		}
+	</script>
+  </body>
+</html>
